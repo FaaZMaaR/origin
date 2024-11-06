@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 
 #include "figure.h"
 
@@ -17,9 +17,9 @@ void Figure::print_creation_info() const {
 		check();
 		std::cout << get_name() << '(';
 		print_sides_and_angles();
-		std::cout << ") ñîçäàí" << std::endl;
+		std::cout << ") ÑÐ¾Ð·Ð´Ð°Ð½" << std::endl;
 	}
 	catch (bad_figure e) {
-		std::cout << "Îøèáêà ñîçäàíèÿ ôèãóðû. Ïðè÷èíà: " << e.what() << std::endl;
+		std::cout << "ÐžÑˆÐ¸Ð±ÐºÐ° ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ Ñ„Ð¸Ð³ÑƒÑ€Ñ‹. ÐŸÑ€Ð¸Ñ‡Ð¸Ð½Ð°: " << e.what() << std::endl;
 	}
 }
