@@ -6,16 +6,20 @@ class smart_array {
 		unsigned size;
 		unsigned last;
 	public:
-		smart_array(unsigned s) : size{ s }, last{} {
+		smart_array(unsigned array_size) : size{ array_size }, last{ 0 } {
 			array = new int[size];
 		}
-		void add_element(int v) {
-			if (last == size) throw std::runtime_error("smart_array is full!");
-			array[last++] = v;
+		void add_element(int value) {
+			if (last == size) {
+				throw std::runtime_error("smart_array is full!");
+			}
+			array[last++] = value;
 		}
-		int get_element(unsigned i) {
-			if (i >= size) throw std::runtime_error("index out of range!");
-			return array[i];
+		int get_element(unsigned index) {
+			if (index >= size) {
+				throw std::runtime_error("index out of range!");
+			}
+			return array[index];
 		}
 		~smart_array() {
 			delete[] array;
