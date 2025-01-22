@@ -2,21 +2,23 @@
 #include <vector>
 #include <algorithm>
 
-struct get_sum {
-	int sum{ 0 };
+class MyFunctor {
+private:
+	int sum;
+	int count;
+public:
+	MyFunctor() : sum{ 0 }, count{ 0 } {}
 	void operator()(int value) {
 		if (value % 3 == 0) {
 			sum += value;
-		}
-	}
-};
-
-struct get_count {
-	int count{ 0 };
-	void operator()(int value) {
-		if (value % 3 == 0) {
 			++count;
 		}
+	}
+	int get_sum() const {
+		return sum;
+	}
+	int get_count() const {
+		return count;
 	}
 };
 
@@ -29,10 +31,9 @@ void display_vector(const std::vector<T>& vector) {
 
 int main() {
 	std::vector<int> int_vector{ 4,1,3,6,25,54 };
-	auto sum = std::for_each(int_vector.begin(), int_vector.end(), get_sum());
-	auto count = std::for_each(int_vector.begin(), int_vector.end(), get_count());
+	auto result = std::for_each(int_vector.begin(), int_vector.end(), MyFunctor());
 	std::cout << "[IN]: ";
 	display_vector(int_vector);
-	std::cout << "\n[OUT]: get_sum() = " << sum.sum << std::endl;
-	std::cout << "[OUT]: get_count() = " << count.count << std::endl;
+	std::cout << "\n[OUT]: get_sum() = " << result.get_sum() << std::endl;
+	std::cout << "[OUT]: get_count() = " << result.get_count() << std::endl;
 }
