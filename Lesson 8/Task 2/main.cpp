@@ -65,6 +65,15 @@ public:
             number->insert(number->begin(), symb - '0');
         }
     }
+    explicit big_integer(int aNumber) : number{ new std::vector<int>() } {
+        if (aNumber == 0) {
+            number->push_back(aNumber);
+        }
+        while (aNumber != 0) {
+            number->push_back(aNumber % 10);
+            aNumber /= 10;
+        }
+    }
     ~big_integer() {
         delete number;
     }
@@ -95,6 +104,10 @@ public:
         return result;
     }
 
+    big_integer operator*(int other) const {
+        return *this * big_integer(other);
+    }
+
     friend std::ostream& operator<<(std::ostream& out, const big_integer& bigInt) {
         for (auto i = bigInt.number->rbegin(); i != bigInt.number->rend(); ++i) {
             out << *i;
@@ -114,4 +127,5 @@ int main() {
     auto sumResult = number1 + number2;
     auto multResult = number1 * number2;
     std::cout << "sum: " << sumResult << "\nmult: " << multResult << std::endl;
+    std::cout << number1 << " * 25 = " << number1 * 25 << std::endl;
 }

@@ -3,6 +3,9 @@
 
 template<typename T>
 void move_vectors(std::vector<T>& lvector, std::vector<T>& rvector) {
+    if (&lvector == &rvector) {
+        return;
+    }
     lvector = std::move(rvector);
 }
 
